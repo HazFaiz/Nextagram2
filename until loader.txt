@@ -1,0 +1,56 @@
+homepage first
+
+dafult app.js, insert hardcoded data from code.next initially.
+
+react strap > library built on bootsrap 4. copy paste components in react form https://reactstrap.github.io/. can give different props to change look. install first,follow site, then import {stuff u want} from "reactstrap"
+
+
+
+<container>
+<row>
+user.map((users)=>
+return(
+
+
+)
+</row>
+</container>
+
+
+fetch instead of hardcode next. will be using axios. install axious > nbpm install --save axios
+
+next get users fromAPI call. refer to nextagram api at code.next.
+
+useEffect use [], an empty array to only run on mount >
+useEffect(() => { 
+axios,get(url)
+.then((result) =>
+ {
+can console.log first
+});
+}, []);
+
+
+loading.io > loading indicators. use when first load page > create reusable component
+
+const Loader = () => {svg inside here}
+export default Loader. style make into object and xmlnsXLink convert into camecalse
+
+inside app.jsm create another state for loading
+const [isLoading, setIsLoading] = useState(true)//use until get all images back fromserver
+
+under <row>
+{isLoading ? (<Loader/>) : (rest of code...
+
+in axios, let setIsLoading(false), so loader is removed when images load from server
+
+
+
+               <Row key={user.id} className="justify-content-center">
+                    <Card className="w-75">
+                        <CardBody >
+                            <CardTitle > {user.username}</CardTitle>
+                            <CardImg className="w-50" src={user.profileImage} />
+                        </CardBody>
+                    </Card>
+                </Row>
