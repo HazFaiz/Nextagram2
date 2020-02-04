@@ -3,13 +3,22 @@ import { Container, Row, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
 import './App.css';
 import axios from "axios";
 import Loading from './components/loading';
-import Homepage from './components/homepage';
+import Homepage from './pages/homepage';
+import UserProfilePage from './pages/UserProfilePage'
+import { Route, Link, useParams } from "react-router-dom";
+import NavBar from "./components/Navbar"
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 function App() {
 
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
+
+
+
 
   useEffect(() => {
     // performing a GET request
@@ -27,21 +36,38 @@ function App() {
       })
   }, [])
 
+
+
   return (
-    <Container>
-      {isLoading ? <Loading /> : <Homepage users={users} />}
-    </Container>
+    <>
+      {isLoading ? <Loading /> :
+        < Container >
+          < NavBar />
+          <Route
+            exact
+            path="/"
+            component={props => { return <Homepage users={users} /> }}
+          />
+          <Route path="/user/:id"><UserProfilePage /></Route>
+        </Container >}
+    </>
   )
 };
 
 
 export default App;
 
-/* <ul>
-  {users.map(user => (
-    <li>
-      {user.id}: {user.username}
-    </li>
-    <
-      ))}
-</ul>  */
+
+
+// {/* 
+//       {isLoading ? <Loading /> : <Homepage users={users} />} */}
+// {/* < Link to="/" > Home</Link > */ }
+// {/* We temporarily hardcode this to user id 1
+//       < Link to="/users/1" > My Profile</Link > */}
+
+// {/* <Route
+//          path="/"
+//         component={props => { return <Homepage users={users} /> }}
+//       // render={props => <Homepage users={users}{...props} />}
+//       />
+//       <Route exact path="/users/:id"><UserProfilePage /></Route> */}

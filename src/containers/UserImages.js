@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios";
+import Loading from '../components/loading';
 
 const UserImages = ({ userId }) => {
     const [images, setImages] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
 
     useEffect(() => {
@@ -10,6 +12,8 @@ const UserImages = ({ userId }) => {
         axios.get(`https://insta.nextacademy.com/api/v2/images?userId=${userId}`)
             .then(result => {
                 setImages(result.data)
+                setIsLoading(false)
+
             })
             .catch(error => {
                 // If unsuccessful, we notify users what went wrong
@@ -18,11 +22,14 @@ const UserImages = ({ userId }) => {
     }, [])
 
     return (
-        images.map(image => {
-            return (
-                <img style={{ width: "100px", margin: "10px" }} src={image.url} />
-            )
-        })
+        <>
+            {isLoading ? <Loading /> :
+                images.map(image => {
+                    return (
+                        <img style={{ width: "100px", margin: "10px" }} src={image.url} />
+                    )
+                })
+            }</>
     )
 }
 

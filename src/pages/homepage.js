@@ -1,17 +1,18 @@
 import React from 'react';
 import { Container, Col, Row, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
-import UserImages from "./UserImages"
+import UserImages from "../containers/UserImages"
+import { Link } from "react-router-dom";
 
 const Homepage = ({ users }) => {
     return (users.map(user => {
         return (
-            <Row key={user.id} className="justify-content-center">
+            <Row key={user.id} style={{ margin: "10px" }} className="justify-content-center">
 
                 <Card className="w-75">
                     <CardBody>
                         <Row>
                             <Col xs="4">
-                                <CardTitle> {user.username}</CardTitle>
+                                <Link to={`/user/${user.id}`}> {user.username}</Link>
                                 <CardImg src={user.profileImage} />
                             </Col>
                             <Col xs="8" style={{ border: '1px dashed black', }}>
