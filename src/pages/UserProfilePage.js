@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Route, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Container, Col, Row, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
-import UserImages from "../containers/UserImages"
+import { Col, Card, CardImg, CardBody } from 'reactstrap';
+
 
 
 const UserProfilePage = () => {
@@ -45,7 +45,7 @@ const UserProfilePage = () => {
         <div style={{ textAlign: 'center' }}>
             <h1>User profile id is {id}</h1>
             <h1>User name is {profile.username}</h1>
-            <img style={{ width: '30%', borderRadius: "20px", margin: "10px" }} src={profile.profileImage} />
+            <img style={{ width: '30%', borderRadius: "40px", margin: "10px" }} src={profile.profileImage} alt="profile" />
             {usersImages.map(user => {
                 return (
                     <Card key={user} style={{ margin: "10px" }}>

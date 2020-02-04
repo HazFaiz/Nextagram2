@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { Container } from 'reactstrap';
 import './App.css';
 import axios from "axios";
 import Loading from './components/loading';
 import Homepage from './pages/homepage';
 import UserProfilePage from './pages/UserProfilePage'
-import { Route, Link, useParams } from "react-router-dom";
+import { Route } from "react-router-dom";
 import NavBar from "./components/Navbar"
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 

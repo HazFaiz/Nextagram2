@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Row, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { Col, Row, Card, CardImg, CardBody } from 'reactstrap';
 import UserImages from "../containers/UserImages"
 import { Link } from "react-router-dom";
 

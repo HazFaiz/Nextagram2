@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -8,11 +8,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText
 } from 'reactstrap';
 import { faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

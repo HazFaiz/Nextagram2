@@ -26,7 +26,7 @@ const UserImages = ({ userId }) => {
             {isLoading ? <Loading /> :
                 images.map(image => {
                     return (
-                        <img style={{ width: "100px", margin: "10px" }} src={image.url} />
+                        <img style={{ width: "100px", margin: "10px" }} src={image.url} alt={image} />
                     )
                 })
             }</>
