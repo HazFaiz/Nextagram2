@@ -1,0 +1,43 @@
+react router > show different components based on what you wanna view without refreshing page. in react,page is all loaded in first place but components are shown conditionally
+
+
+
+put loading state in homepage
+
+<Route exact path ="/"
+<Homepage users={users} />
+</Route>
+<Route exact path ="/about"
+<Aboutpage/>
+</Route>
+
+
+navbar links using link from reactrouter, not a tag
+
+import {Link} form reactrouterdom
+
+<NavItem>
+<Link to="/">Home>Link>
+</NavItem> << wont take reactstrap style
+
+<NavLink tag={Link} to="/"> Home</NavLink> << will keep styling if use tag=
+
+Normal anchor tags will actually refresh the page, not the behavior we want.we want to switch components without refreshing page. whole selling point of react
+
+
+<Route path="/user/:id">
+<UserProfile>
+</Route>
+
+Use value that gets passed into the :id
+
+
+import {useParams} from reactrouterdom
+
+const useParams = useParams()
+
+
+change CardTitle to Link
+<Link to={`/user/${user.id}`}
+
+once have userid can makeapi call using the id and display just that users profile

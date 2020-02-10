@@ -22,14 +22,15 @@ const UserImages = ({ userId }) => {
     }, [])
 
     return (
-        <>
+        <div className="justify-content-between">
             {isLoading ? <Loading /> :
                 images.map(image => {
                     return (
-                        <img style={{ width: "100px", margin: "10px" }} src={image.url} alt={image} />
+
+                        <img style={{ width: "45%", padding: "10px", margin: "10px" }} src={image.url} alt={image} />
                     )
                 })
-            }</>
+            }</div>
     )
 }
 

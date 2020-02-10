@@ -15,6 +15,7 @@ const UserProfilePage = () => {
     //below gets the user iamges
     useEffect(() => {
         // performing a GET request
+        //Gets users images
         axios.get(`https://insta.nextacademy.com/api/v1/images?userId=${id}`)
             .then(result => {
                 // console.log(result)
@@ -24,7 +25,7 @@ const UserProfilePage = () => {
         //finding profileimage and name
         axios.get(`https://insta.nextacademy.com/api/v1/users/${id}`)
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 setProfile(result.data)
             })
             .catch(error => {
@@ -34,20 +35,13 @@ const UserProfilePage = () => {
     }, [])
 
 
-    // return (usersImages.map(user => {
-    //     return (
-    //         <img style={{ width: "100px", margin: "10px" }} src={user} />
-    //     )
-    // })
-
-    // )
     return (
         <div style={{ textAlign: 'center' }}>
-            <h1>User profile id is {id}</h1>
-            <h1>User name is {profile.username}</h1>
+            <h1>Weclome to {profile.username}'s page!</h1>
             <img style={{ width: '30%', borderRadius: "40px", margin: "10px" }} src={profile.profileImage} alt="profile" />
             {usersImages.map(user => {
                 return (
+                    // < Masonry goes here
                     <Card key={user} style={{ margin: "10px" }}>
                         <CardBody>
                             <Col xs="12">
@@ -55,7 +49,7 @@ const UserProfilePage = () => {
                             </Col>
                         </CardBody>
                     </Card>
-
+                    //
                 )
             })}
         </div>

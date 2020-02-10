@@ -5,9 +5,10 @@ import axios from "axios";
 import Loading from './components/loading';
 import Homepage from './pages/homepage';
 import UserProfilePage from './pages/UserProfilePage'
-import { Route } from "react-router-dom";
+import { Route, useHistory, Redirect } from "react-router-dom";
 import NavBar from "./components/Navbar"
-
+import MyProfilePage from "./pages/MyProfilePage"
+import UploadPage from "./pages/UploadPage"
 
 
 function App() {
@@ -15,7 +16,28 @@ function App() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem('jwt') !== null
+  )
 
+  // const [currentUser, setCurrentUser] = useState( //Trying to output in navbar the current user name thats logged in
+  //   localStorage.getItem('name') !== null
+  // )
+
+  // const handleNavName = () => {
+  //   setCurrentUser(localStorage.getItem('name'))
+
+  // }
+
+  //<<<<-----------HANDLES LOGGING OUT, REMOVES JWT -->>>>>
+  const handleLogOut = () => {
+    // console.log(loggedIn)
+    if (loggedIn === true) {
+      setLoggedIn(false)
+      localStorage.removeItem("jwt")
+      localStorage.removeItem("name")
+    }
+  }
 
 
   useEffect(() => {
@@ -37,18 +59,25 @@ function App() {
 
 
   return (
-    <>
+    < Container  >
       {isLoading ? <Loading /> :
+
         < Container >
-          < NavBar />
+          < NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} handleLogOut={handleLogOut} />
           <Route
             exact
             path="/"
             component={props => { return <Homepage users={users} /> }}
           />
           <Route path="/user/:id"><UserProfilePage /></Route>
+          <Route exact path="/profile" component={MyProfilePage} />
+          <Route exact path="/upload" component={UploadPage} />
         </Container >}
-    </>
+
+
+
+
+    </Container>
   )
 };
 
@@ -57,15 +86,18 @@ export default App;
 
 
 
-// {/* 
-//       {isLoading ? <Loading /> : <Homepage users={users} />} */}
-// {/* < Link to="/" > Home</Link > */ }
-// {/* We temporarily hardcode this to user id 1
-//       < Link to="/users/1" > My Profile</Link > */}
-
-// {/* <Route
-//          path="/"
-//         component={props => { return <Homepage users={users} /> }}
-//       // render={props => <Homepage users={users}{...props} />}
-//       />
-//       <Route exact path="/users/:id"><UserProfilePage /></Route> */}
+// return (
+//   < Container>
+//     {isLoading ? <Loading style={{ top: "50%" }} /> :
+//       < Container >
+//         < NavBar />
+//         <Route
+//           exact
+//           path="/"
+//           component={props => { return <Homepage users={users} /> }}
+//         />
+//         <Route path="/user/:id"><UserProfilePage /></Route>
+//       </Container >}
+//   </Container>
+// )
+// };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -8,14 +8,39 @@ import {
     Nav,
     NavItem,
     NavLink,
+    NavbarText,
+    Button
 } from 'reactstrap';
 import { faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MyModal from './Modal';
 
-const NavBar = (props) => {
+const NavBar = ({ setLoggedIn, loggedIn, handleLogOut }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+
+
+    const welcomeMsg = () => {
+        if (loggedIn === true) {
+            return (
+                `Welcome ${localStorage.getItem('name')}`)
+        } else {
+            return ('')
+        }
+    }
+
+
+    const uploadLink = () => {
+        if (loggedIn === true) {
+            return (
+                `Upload`)
+        } else {
+            return ('')
+        }
+    }
+
 
     return (
         <div>
@@ -28,9 +53,18 @@ const NavBar = (props) => {
                             <NavLink tag={Link} to="/">Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to="/user/1" >My Profile</NavLink>
+                            <NavLink tag={Link} to="/profile" >My Profile</NavLink>
                         </NavItem>
+                        {/* Displays currently logged in user name */}
+                        <NavbarText>{welcomeMsg()}</NavbarText>
                     </Nav>
+                    {/* //Upload picture link*/}
+
+                    <NavLink tag={Link} to="/upload" >{uploadLink()}</NavLink>
+
+                    {/* login/signup modal goes here */}
+                    <MyModal loggedIn={loggedIn} setLoggedIn={setLoggedIn} handleLogOut={handleLogOut} />
+
                 </Collapse>
             </Navbar>
         </div>
